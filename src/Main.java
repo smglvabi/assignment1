@@ -2,22 +2,23 @@ import java.util.Scanner;
 
 public class Main {
 
-    static int countChars(String s, int index) {
+    static int gcd(int a, int b) {
 
-        if (index == s.length()) {
-            return 0;
+        if (b == 0) {
+            return a;
         }
 
-        return 1 + countChars(s, index + 1);
+        return gcd(b, a % b);
     }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        String s = sc.nextLine();
+        int a = sc.nextInt();
+        int b = sc.nextInt();
 
-        System.out.println(countChars(s, 0));
+        System.out.println(gcd(a,b));
 
     }
 }
