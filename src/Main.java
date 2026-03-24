@@ -2,32 +2,34 @@ import java.util.Scanner;
 
 public class Main {
 
-    static void readArray(int[] arr, int index, Scanner sc) {
-        if (index == arr.length) {
-            return;
+    static boolean isPrime(int n, int i) {
+        if (i == 1) {
+            return true;
         }
-        arr[index] = sc.nextInt();
-        readArray(arr, index + 1, sc);
-    }
 
-    static int sum(int[] arr, int n) {
-        if (n == 0) {
-            return 0;
+        if (n % i == 0) {
+            return false;
         }
-        return sum(arr, n - 1) + arr[n - 1];
+
+        return isPrime(n, i - 1);
     }
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        int[] arr = new int[n];
 
-        readArray(arr, 0, sc);
+        if (n <= 1) {
+            System.out.println("Composite");
+            return;
+        }
 
-        int total = sum(arr, n);
-        double average = (double) total / n;
+        if (isPrime(n, n - 1)) {
+            System.out.println("Prime");
+        } else {
+            System.out.println("Composite");
+        }
 
-        System.out.println(average);
     }
 }
